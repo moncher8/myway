@@ -63,6 +63,14 @@ flutter:
   assets:
     - assets/images/mainpage.png
     - assets/images/trenbe_logo.png
+    - assets/images/man.jpg
+    - assets/images/outlet.jpg
+    - assets/images/resale.jpg
+    - assets/images/womancl.jpeg
+    - assets/images/child.jpg
+
+
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -10,9 +10,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyHomePage> {
+  late int _currentPageIndex;
   @override
   void initState() {
     super.initState();
+    _currentPageIndex = 0;
   }
 
   PreferredSizeWidget _appBarWidget() {
@@ -37,8 +39,23 @@ class _MyWidgetState extends State<MyHomePage> {
     );
   }
 
+  Container _myExpandedPic(String label, String pic) {
+    return Container(
+      //alignment: Alignment.center,
+      child: Column(
+        children: [
+          Image.asset(
+            "assets/images/$pic.jpg",
+          ),
+          Text("$label"),
+        ],
+      ),
+    );
+  }
+
   Widget _bodyWidget() {
-    return Column(
+    return SingleChildScrollView(
+        child: Column(
       children: [
         Container(
           height:
@@ -53,7 +70,7 @@ class _MyWidgetState extends State<MyHomePage> {
                   child: TextField(
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: (Colors.grey.withOpacity(0.4)),
+                      fillColor: (Colors.grey.withOpacity(0.2)),
                       labelText: "트렌비X삼성전자 최대 20% 쿠폰!",
                       suffixIcon: Icon(Icons.search),
                       enabledBorder: OutlineInputBorder(
@@ -64,42 +81,32 @@ class _MyWidgetState extends State<MyHomePage> {
                 ),
               ),
               Expanded(
-                flex: 1,
+                flex: 2,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Row(children: [
-                      Expanded(
-                        child: _myExpandedContain("Home"),
-                        flex: 1,
-                      ),
-                      Expanded(
-                        child: _myExpandedContain("기획전"),
-                        flex: 1,
-                      ),
-                      Expanded(child: _myExpandedContain("Ranking"), flex: 1),
-                      Expanded(
-                        child: _myExpandedContain("Brand"),
-                        flex: 1,
-                      ),
-                      Expanded(
-                        child: _myExpandedContain("IT:EM"),
-                        flex: 1,
-                      ),
-                      Expanded(
-                        child: _myExpandedContain("Magazine"),
-                        flex: 1,
-                      ),
-
-                      /*GestureDetector(
-                            onTap: () {},
-                            child: Text(
-                              "Home",
-                              style: TextStyle(color: Colors.black),
-                           ))*/
-                    ]),
-                  ),
+                  child: Row(children: [
+                    Expanded(
+                      child: _myExpandedContain("Home"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedContain("기획전"),
+                      flex: 1,
+                    ),
+                    Expanded(child: _myExpandedContain("Ranking"), flex: 1),
+                    Expanded(
+                      child: _myExpandedContain("Brand"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedContain("IT:EM"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedContain("Magazine"),
+                      flex: 1,
+                    ),
+                  ]),
                 ),
               ),
               Expanded(
@@ -112,15 +119,35 @@ class _MyWidgetState extends State<MyHomePage> {
               Expanded(
                 flex: 2,
                 child: Container(
-                  color: Colors.grey,
                   width: MediaQuery.of(context).size.width,
-                  child: Icon(Icons.search),
+                  child: Column(children: [
+                    Expanded(
+                      child: _myExpandedPic("여성", "womancl"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedPic("남성", "man"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedPic("키즈", "child"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedPic("리세일", "resale"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedPic("아울렛", "outlet"),
+                      flex: 1,
+                    ),
+                  ]),
                 ),
               ),
               Expanded(
                 flex: 2,
                 child: Container(
-                  color: Colors.grey,
+                  //color: Colors.grey,
                   width: MediaQuery.of(context).size.width,
                   child: Icon(Icons.favorite),
                 ),
@@ -133,61 +160,66 @@ class _MyWidgetState extends State<MyHomePage> {
                 ),
               ),
             ],
-            //expanded 총 6개
           ),
         ),
       ],
+    ));
+  }
+
+  Widget _bottomNavigatorBar() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.deepPurple,
+      unselectedItemColor: Colors.grey,
+      selectedLabelStyle: TextStyle(color: Colors.deepPurple),
+      unselectedLabelStyle: TextStyle(color: Colors.grey),
+      currentIndex: _currentPageIndex,
+      onTap: (int index) {
+        setState(() {
+          _currentPageIndex = index;
+        });
+      },
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.grid_view_rounded,
+          ),
+          label: "카테고리",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.redeem_sharp,
+          ),
+          label: "이벤트",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.home_filled,
+          ),
+          label: "홈",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.local_mall_outlined,
+          ),
+          label: "뉴 시즌",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.perm_identity_outlined,
+          ),
+          label: "마이",
+        )
+      ],
     );
   }
-  //FloatingActionButton);
-
-  /*Widget _bodyWidget() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal:10,vertical:10),
-      margin:EdgeInsets.symmetric(horizontal:10,vertical:10),
-      color:Colors.grey,
-      child:Row(
-        children:[
-          width:300,
-          icon:Icon(Icons.search),
-      ],
-      )
-     
-                
-        );
-  }
-
-   Widget _bottomNavigatorBar() {
-    return BottomNavigationBar(items: [
-      BottomNavigationBarItem(
-        icon: Icon(Icons.grid_view_rounded),
-        label: "카테고리",
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.redeem_sharp),
-        label: "이벤트",
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home_filled),
-        label: "홈",
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.local_mall_outlined),
-        label: "뉴 시즌",
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.perm_identity_outlined),
-        label: "마이",
-      )
-    ]);
-  }*/
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBarWidget(),
       body: _bodyWidget(),
-      //bottomNavigationBar:_BottomNavigationBar(),
+      bottomNavigationBar: _bottomNavigatorBar(),
     );
   }
 }
