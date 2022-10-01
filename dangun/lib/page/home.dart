@@ -69,8 +69,8 @@ class _MyHomeState extends State<MyHomePage> {
           child: Row(children: [
             ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(9)),
-              child: Image.asset(
-                datas[index]["image"] ?? '',
+              child: Image.network(
+                "https://st3.depositphotos.com/4316461/16517/i/450/depositphotos_165173000-stock-photo-minsk-belarus-1-sep-2017.jpg",
                 width: 100,
                 height: 100,
               ),
