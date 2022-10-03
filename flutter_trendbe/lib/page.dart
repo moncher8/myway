@@ -41,11 +41,13 @@ class _MyWidgetState extends State<MyHomePage> {
 
   Container _myExpandedPic(String label, String pic) {
     return Container(
+      padding: EdgeInsets.all(25),
       //alignment: Alignment.center,
-      child: Column(
+      child: Row(
         children: [
           Image.asset(
             "assets/images/$pic.jpg",
+            width: 60,
           ),
           Text("$label"),
         ],
@@ -62,24 +64,25 @@ class _MyWidgetState extends State<MyHomePage> {
               MediaQuery.of(context).copyWith().size.height, //width, height 조정
           child: Column(
             children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  padding: EdgeInsets.all(20),
-                  width: MediaQuery.of(context).size.width,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: (Colors.grey.withOpacity(0.2)),
-                      labelText: "트렌비X삼성전자 최대 20% 쿠폰!",
-                      suffixIcon: Icon(Icons.search),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(30)),
-                    ),
+              //Expanded(
+              //flex: 1,
+              //child:
+              Container(
+                padding: EdgeInsets.all(20),
+                width: MediaQuery.of(context).size.width,
+                child: TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: (Colors.grey.withOpacity(0.2)),
+                    labelText: "트렌비X삼성전자 최대 20% 쿠폰!",
+                    suffixIcon: Icon(Icons.search),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(30)),
                   ),
                 ),
               ),
+              //),
               Expanded(
                 flex: 2,
                 child: Container(
@@ -87,10 +90,10 @@ class _MyWidgetState extends State<MyHomePage> {
                   child: Row(children: [
                     Expanded(
                       child: _myExpandedContain("Home"),
-                      flex: 1,
+                      //flex: 1,
                     ),
                     Expanded(
-                      child: _myExpandedContain("기획전"),
+                      child: _myExpandedContain("Promotion"),
                       flex: 1,
                     ),
                     Expanded(child: _myExpandedContain("Ranking"), flex: 1),
@@ -112,15 +115,19 @@ class _MyWidgetState extends State<MyHomePage> {
               Expanded(
                 flex: 4,
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset("assets/images/mainpage.png"),
+                  //width: MediaQuery.of(context).size.width,
+                  //height: MediaQuery.of(context).size.height,
+                  child: Image.asset(
+                    "assets/images/mainpage.png",
+                    width: MediaQuery.of(context).size.width,
+                  ),
                 ),
               ),
               Expanded(
                 flex: 2,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  child: Column(children: [
+                  child: Row(children: [
                     Expanded(
                       child: _myExpandedPic("여성", "womancl"),
                       flex: 1,
@@ -149,7 +156,29 @@ class _MyWidgetState extends State<MyHomePage> {
                 child: Container(
                   //color: Colors.grey,
                   width: MediaQuery.of(context).size.width,
-                  child: Icon(Icons.favorite),
+
+                  child: Row(children: [
+                    Expanded(
+                      child: _myExpandedPic("여성", "womancl"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedPic("남성", "man"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedPic("키즈", "child"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedPic("리세일", "resale"),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: _myExpandedPic("아울렛", "outlet"),
+                      flex: 1,
+                    ),
+                  ]),
                 ),
               ),
               Expanded(
