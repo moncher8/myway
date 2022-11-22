@@ -1,0 +1,3 @@
+class InitRepository {
+  InitRepository();
+}
